@@ -28,5 +28,29 @@ namespace WindowsFormsApp1DataJsonXmlConvert.WE
         {
             return openFileDialog.FileNames;
         }
+        public List<string> FileXml()
+        {
+            List<string> files = new List<string>();
+            foreach (string g in openFileDialog.FileNames)
+            {
+                if (g.EndsWith(".xml"))
+                {
+                    files.Add(g);
+                }
+            }
+            return files;
+        }
+        public List<string> FileJpg()
+        {
+            List<string> files = new List<string>();
+            foreach (string g in openFileDialog.FileNames)
+            {
+                if (g.EndsWith(".jpg"))
+                {
+                    files.Add(g);
+                }
+            }
+            return files;
+        }
     }
 }

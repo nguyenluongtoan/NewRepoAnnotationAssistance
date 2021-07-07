@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 using WindowsFormsApp1DataJsonXmlConvert.Geometry;
 
 namespace WindowsFormsApp1DataJsonXmlConvert.Bussiness
@@ -32,6 +33,28 @@ namespace WindowsFormsApp1DataJsonXmlConvert.Bussiness
                 stac.Push(points);
             }
             return stac;
+        }
+
+        public static List<System.Drawing.Rectangle> GetXml(string filename)
+        {
+            XmlDocument xmlDocument = new XmlDocument();
+            xmlDocument.Load(filename);
+            XmlNodeList nodes = xmlDocument.GetElementsByTagName("bndbox");
+            List<System.Drawing.Rectangle> lRectangles = new List<System.Drawing.Rectangle>();
+            foreach(XmlNode xmlNode in nodes)
+            {
+                XmlNode xmin = xmlNode["xmin"];
+                float tlx = float.Parse(xmin.InnerText);
+                XmlNode ymin = xmlNode["ymin"];
+                float tly = float.Parse(ymin.InnerText);
+                XmlNode xmax = xmlNode["xmax"];
+                float brx = float.Parse(xmax.InnerText);
+                XmlNode ymax = xmlNode["ymax"];
+                float bry = float.Parse(ymax.InnerText);
+                System.Drawing.Rectangle rectangle = new System.Drawing.Rectangle((int)tlx, (int)tly, (int)(brx - tlx), (int)(bry -tly));
+                lRectangles.Add(rectangle);
+            }
+            return lRectangles;
         }
 
     }
