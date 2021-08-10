@@ -52,5 +52,17 @@ namespace WindowsFormsApp1DataJsonXmlConvert.WE
             }
             return files;
         }
+        public List<string> FileExtension(string ext)
+        {
+            List<string> files = new List<string>();
+            foreach (string g in openFileDialog.FileNames)
+            {
+                if (g.EndsWith(ext))
+                {
+                    files.Add(g);
+                }
+            }
+            return files;
+        }
     }
 }

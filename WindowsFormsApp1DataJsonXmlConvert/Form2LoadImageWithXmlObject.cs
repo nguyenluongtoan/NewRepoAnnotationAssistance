@@ -31,33 +31,9 @@ namespace WindowsFormsApp1DataJsonXmlConvert
             {
                 openDialogXmlFileNames = openDialog.FileXml();
                 openDialogJpgFileNames = openDialog.FileJpg();
-                //foreach (var filename in openDialogFileNames)
-                //{  }
                 pictureBox1_RePaint();
             }
-            //Bussiness._.GetXml();
-            //string fileName = @"F:\lqa\hangano\OD_samples (1)\images\cm_ger.1872_19701202_204506_n.mp4_01140.jpg";
         }
-
-        private void pictureBox1_Paintzxvzv(object sender, PaintEventArgs e)
-        {
-            //rectangles = Bussiness._.GetXml(@"F:\lqa\hangano\OD_samples (1)\xml\cm_ger.1872_19701202_204506_n.mp4_01140.xml");
-            //string fileName = @"F:\lqa\hangano\OD_samples (1)\images\cm_ger.1872_19701202_204506_n.mp4_01140.jpg";
-            if (selectedImage)
-            {
-                rectangles = Bussiness._.GetXml(openDialogXmlFileNames[currentPosition]);
-                string fileName = openDialogJpgFileNames[currentPosition];
-                e.Graphics.Clear(Color.White);
-                e.Graphics.DrawImage(new Bitmap(fileName), 0, 0);
-                foreach (Rectangle rectangle in rectangles)
-                {
-                    e.Graphics.DrawRectangle( new Pen(Color.Red, 2f), rectangle );
-                }
-            }
-           
-            //pictureBox1.Image = new Bitmap(fileName);
-        }
-
         void pictureBox1_RePaint()
         {
             Graphics g = this.pictureBox1.CreateGraphics();
@@ -73,7 +49,7 @@ namespace WindowsFormsApp1DataJsonXmlConvert
 
         private void button1Prev_Click(object sender, EventArgs e)
         {
-            if(currentPosition > 0)
+            if (currentPosition > 0)
             {
                 currentPosition--;
                 pictureBox1_RePaint();
